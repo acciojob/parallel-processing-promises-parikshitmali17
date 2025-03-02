@@ -37,11 +37,56 @@
 // 	})
 // }
 
+// document.addEventListener("DOMContentLoaded", () => {
+//   const output = document.getElementById("output");
+//   const btn = document.getElementById("download-images-button");
+//   const loading = document.getElementById("loading");
+//   const errorDiv = document.getElementById("error");
+
+//   const images = [
+//     "https://picsum.photos/id/237/200/300",
+//     "https://picsum.photos/id/238/200/300",
+//     "https://picsum.photos/id/239/200/300"
+//   ];
+
+//   function downloadImage(url) {
+//     return new Promise((resolve, reject) => {
+//       const img = new Image();
+//       img.src = url;
+//       img.onload = () => resolve(img);
+//       img.onerror = () => reject(`Failed to load image: ${url}`);
+//     });
+//   }
+
+//   function downloadImages() {
+//     // Clear output before downloading images
+//     output.innerHTML = "";
+//     errorDiv.innerText = "";
+//     loading.innerText = "Loading...";
+
+//     // Download images in parallel
+//     const imagePromises = images.map(url => downloadImage(url));
+
+//     Promise.all(imagePromises)
+//       .then(downloadedImages => {
+//         loading.innerText = "";
+//         downloadedImages.forEach(img => output.appendChild(img));
+//       })
+//       .catch(err => {
+//         loading.innerText = "";
+//         errorDiv.innerText = err;
+//       });
+//   }
+
+//   // Ensure the button exists before adding event listener
+//   if (btn) {
+//     btn.addEventListener("click", downloadImages);
+//   }
+// });
+
 document.addEventListener("DOMContentLoaded", () => {
   const output = document.getElementById("output");
   const btn = document.getElementById("download-images-button");
-  const loading = document.getElementById("loading");
-  const errorDiv = document.getElementById("error");
 
   const images = [
     "https://picsum.photos/id/237/200/300",
@@ -49,36 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
     "https://picsum.photos/id/239/200/300"
   ];
 
-  function downloadImage(url) {
-    return new Promise((resolve, reject) => {
+  function downloadImages() {
+    // Clear previous images
+    output.innerHTML = "";
+
+    // Download and display images
+    images.forEach(url => {
       const img = new Image();
       img.src = url;
-      img.onload = () => resolve(img);
-      img.onerror = () => reject(`Failed to load image: ${url}`);
+      output.appendChild(img);
     });
   }
 
-  function downloadImages() {
-    // Clear output before downloading images
-    output.innerHTML = "";
-    errorDiv.innerText = "";
-    loading.innerText = "Loading...";
-
-    // Download images in parallel
-    const imagePromises = images.map(url => downloadImage(url));
-
-    Promise.all(imagePromises)
-      .then(downloadedImages => {
-        loading.innerText = "";
-        downloadedImages.forEach(img => output.appendChild(img));
-      })
-      .catch(err => {
-        loading.innerText = "";
-        errorDiv.innerText = err;
-      });
-  }
-
-  // Ensure the button exists before adding event listener
   if (btn) {
     btn.addEventListener("click", downloadImages);
   }
