@@ -25,7 +25,7 @@ function downloadImage(images) {
 				error.appendChild(errorPara)
 			})
 			downloadedImg.map((image)=>{
-				document.output.innerHTML+=<img src=image>
+				document.output.innerHTML+=`<img src=${image}>`
 			})
 			
 			downloadStart=false;
