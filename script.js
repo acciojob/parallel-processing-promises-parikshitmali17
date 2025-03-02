@@ -59,10 +59,12 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function downloadImages() {
-    loading.innerText = "Loading...";
-    errorDiv.innerText = "";
+    // Clear output to ensure Cypress test starts correctly
     output.innerHTML = "";
+    errorDiv.innerText = "";
+    loading.innerText = "Loading...";
 
+    // Download images in parallel
     const imagePromises = images.map(url => downloadImage(url));
 
     Promise.all(imagePromises)
