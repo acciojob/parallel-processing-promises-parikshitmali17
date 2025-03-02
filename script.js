@@ -17,6 +17,9 @@ let downloadStart=false;
 function downloadImage(images) {
 	btn.addEventListner('click',()=>{
 		downloadStart=true
+		if(downloadStart){
+	loading.innerText="Loading"
+}
 		images.map((image)=>{
 			fetch(image.url).then((DI)=>{
 				downloadedImg.push(DI)
@@ -29,11 +32,9 @@ function downloadImage(images) {
 			})
 			
 			downloadStart=false;
+			
 		})
 	})
 }
 
 
-if(downloadStart){
-	loading.innerText="Loading"
-}
