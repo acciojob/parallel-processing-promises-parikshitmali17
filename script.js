@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function downloadImages() {
-    // Clear output to ensure Cypress test starts correctly
+    // Clear output before downloading images
     output.innerHTML = "";
     errorDiv.innerText = "";
     loading.innerText = "Loading...";
@@ -78,7 +78,10 @@ document.addEventListener("DOMContentLoaded", () => {
       });
   }
 
-  btn.addEventListener("click", downloadImages);
+  // Ensure the button exists before adding event listener
+  if (btn) {
+    btn.addEventListener("click", downloadImages);
+  }
 });
 
 
