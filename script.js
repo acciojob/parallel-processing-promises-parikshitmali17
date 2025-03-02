@@ -12,6 +12,7 @@ const images = [
 
 let downloadedImg=[];
 let errorPara="";
+let i=0;
 let downloadStart=false;
 function downloadImage(images) {
 	btn.addEventListner('click',()=>{
@@ -24,7 +25,7 @@ function downloadImage(images) {
 				error.appendChild(errorPara)
 			})
 			downloadedImg.map((image)=>{
-				output.appnedchild(image);
+				document.output.innerHTML+=<img src=image>
 			})
 			
 			downloadStart=false;
